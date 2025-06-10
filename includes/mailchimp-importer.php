@@ -39,7 +39,7 @@ function mcpt_import_newsletter_from_url( $url ) {
     $post_id = wp_insert_post( array(
         'post_title'   => wp_strip_all_tags( $doc->getElementsByTagName( 'title' )->item(0)->textContent ),
         'post_content' => $content,
-        'post_status'  => 'publish',
+        'post_status'  => 'draft',
         'post_type'    => 'newsletter',
         'post_excerpt' => $excerpt,
     ) );
