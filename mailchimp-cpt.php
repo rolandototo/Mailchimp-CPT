@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Mailchimp CPT Importer
  * Description: Import newsletters from Mailchimp or any URL and store them as a custom post type.
- * Version: 0.1.0
+ * Version: 0.1.1
  * Author: Rolando
  * License: GPL2
  */
@@ -23,6 +23,6 @@ require_once MCPT_PATH . 'admin/import-page.php';
 
 // Enqueue admin styles
 function mcpt_admin_enqueue() {
-    wp_enqueue_style( 'mcpt-admin', plugin_dir_url( __FILE__ ) . 'assets/css/admin-style.css', array(), '0.1.0' );
+    wp_enqueue_style( 'mcpt-admin', plugin_dir_url( __FILE__ ) . 'assets/css/admin-style.css', array(), '0.1.1' );
 }
 add_action( 'admin_enqueue_scripts', 'mcpt_admin_enqueue' );
