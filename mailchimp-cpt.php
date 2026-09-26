@@ -26,3 +26,22 @@ function mcpt_admin_enqueue() {
     wp_enqueue_style( 'mcpt-admin', plugin_dir_url( __FILE__ ) . 'assets/css/admin-style.css', array(), '0.1.1' );
 }
 add_action( 'admin_enqueue_scripts', 'mcpt_admin_enqueue' );
+
+/**
+ * Registers the post type and flushes rewrite rules on activation, so
+ * /newsletter/ works without re-saving Settings > Permalinks.
+ */
+function mcpt_activate() {
+    mcpt_register_newsletter_cpt();
+    flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'mcpt_activate' );
+
+/**
+ * Removes the post type's rewrite rules on deactivation.
+ */
+function mcpt_deactivate() {
+    unregister_post_type( 'newsletter' );
+    flush_rewrite_rules();
+}
+register_deactivation_hook( __FILE__, 'mcpt_deactivate' );
