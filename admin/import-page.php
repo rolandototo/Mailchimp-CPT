@@ -22,6 +22,7 @@ function mcpt_render_import_page() {
     ?>
     <div class="wrap">
         <h1><?php esc_html_e( 'Import Newsletter', 'mcpt' ); ?></h1>
+        <?php settings_errors( 'mcpt_messages' ); ?>
         <form method="post">
             <?php wp_nonce_field( 'mcpt_import_action', 'mcpt_import_nonce' ); ?>
             <table class="form-table">
@@ -40,10 +41,16 @@ function mcpt_handle_import_request() {
     if ( isset( $_POST['mcpt_import_nonce'] ) && wp_verify_nonce( $_POST['mcpt_import_nonce'], 'mcpt_import_action' ) ) {
         if ( ! empty( $_POST['mcpt_url'] ) ) {
             $result = mcpt_import_newsletter_from_url( esc_url_raw( $_POST['mcpt_url'] ) );
+            // settings_errors() prints messages as HTML, so escape them here.
             if ( is_wp_error( $result ) ) {
-                add_settings_error( 'mcpt_messages', 'mcpt_error', $result->get_error_message(), 'error' );
+                add_settings_error( 'mcpt_messages', 'mcpt_error', esc_html( $result->get_error_message() ), 'error' );
             } else {
-                add_settings_error( 'mcpt_messages', 'mcpt_success', __( 'Newsletter imported.', 'mcpt' ), 'updated' );
+                $message = sprintf(
+                    /* translators: %s: link to edit the imported draft */
+                    __( 'Newsletter imported as a draft. %s', 'mcpt' ),
+                    '<a href="' . esc_url( get_edit_post_link( $result, 'url' ) ) . '">' . esc_html__( 'Review and publish it', 'mcpt' ) . '</a>'
+                );
+                add_settings_error( 'mcpt_messages', 'mcpt_success', $message, 'success' );
             }
         }
     }
