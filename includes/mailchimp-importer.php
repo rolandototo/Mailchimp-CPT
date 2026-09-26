@@ -4,10 +4,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function mcpt_import_newsletter_from_url( $url ) {
-    $response = wp_remote_get( $url );
+    // wp_safe_remote_get() refuses local and private network addresses.
+    $response = wp_safe_remote_get( $url, array( 'timeout' => 20 ) );
 
     if ( is_wp_error( $response ) ) {
         return $response;
+    }
+
+    $code = (int) wp_remote_retrieve_response_code( $response );
+    if ( 200 !== $code ) {
+        /* translators: %d: HTTP status code */
+        return new WP_Error( 'http_error', sprintf( __( 'The page returned HTTP %d.', 'mcpt' ), $code ) );
     }
 
     $html = wp_remote_retrieve_body( $response );
