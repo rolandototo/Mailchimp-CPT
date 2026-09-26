@@ -5,20 +5,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function mcpt_register_newsletter_cpt() {
     $labels = array(
-        'name'               => _x( 'Newsletters', 'post type general name', 'mcpt' ),
-        'singular_name'      => _x( 'Newsletter', 'post type singular name', 'mcpt' ),
-        'menu_name'          => _x( 'Newsletters', 'admin menu', 'mcpt' ),
-        'name_admin_bar'     => _x( 'Newsletter', 'add new on admin bar', 'mcpt' ),
-        'add_new'            => _x( 'Add New', 'newsletter', 'mcpt' ),
-        'add_new_item'       => __( 'Add New Newsletter', 'mcpt' ),
-        'new_item'           => __( 'New Newsletter', 'mcpt' ),
-        'edit_item'          => __( 'Edit Newsletter', 'mcpt' ),
-        'view_item'          => __( 'View Newsletter', 'mcpt' ),
-        'all_items'          => __( 'All Newsletters', 'mcpt' ),
-        'search_items'       => __( 'Search Newsletters', 'mcpt' ),
-        'parent_item_colon'  => __( 'Parent Newsletters:', 'mcpt' ),
-        'not_found'          => __( 'No newsletters found.', 'mcpt' ),
-        'not_found_in_trash' => __( 'No newsletters found in Trash.', 'mcpt' )
+        'name'               => _x( 'Newsletters', 'post type general name', 'mailchimp-cpt' ),
+        'singular_name'      => _x( 'Newsletter', 'post type singular name', 'mailchimp-cpt' ),
+        'menu_name'          => _x( 'Newsletters', 'admin menu', 'mailchimp-cpt' ),
+        'name_admin_bar'     => _x( 'Newsletter', 'add new on admin bar', 'mailchimp-cpt' ),
+        'add_new'            => _x( 'Add New', 'newsletter', 'mailchimp-cpt' ),
+        'add_new_item'       => __( 'Add New Newsletter', 'mailchimp-cpt' ),
+        'new_item'           => __( 'New Newsletter', 'mailchimp-cpt' ),
+        'edit_item'          => __( 'Edit Newsletter', 'mailchimp-cpt' ),
+        'view_item'          => __( 'View Newsletter', 'mailchimp-cpt' ),
+        'all_items'          => __( 'All Newsletters', 'mailchimp-cpt' ),
+        'search_items'       => __( 'Search Newsletters', 'mailchimp-cpt' ),
+        'parent_item_colon'  => __( 'Parent Newsletters:', 'mailchimp-cpt' ),
+        'not_found'          => __( 'No newsletters found.', 'mailchimp-cpt' ),
+        'not_found_in_trash' => __( 'No newsletters found in Trash.', 'mailchimp-cpt' )
     );
 
     $args = array(

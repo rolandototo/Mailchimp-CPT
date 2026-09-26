@@ -20,13 +20,13 @@ function mcpt_import_newsletter_from_url( $url ) {
     $code = (int) wp_remote_retrieve_response_code( $response );
     if ( 200 !== $code ) {
         /* translators: %d: HTTP status code */
-        return new WP_Error( 'http_error', sprintf( __( 'The page returned HTTP %d.', 'mcpt' ), $code ) );
+        return new WP_Error( 'http_error', sprintf( __( 'The page returned HTTP %d.', 'mailchimp-cpt' ), $code ) );
     }
 
     $html = wp_remote_retrieve_body( $response );
 
     if ( '' === trim( $html ) ) {
-        return new WP_Error( 'empty_body', __( 'Empty response body.', 'mcpt' ) );
+        return new WP_Error( 'empty_body', __( 'Empty response body.', 'mailchimp-cpt' ) );
     }
 
     // Parse HTML. The XML declaration makes DOMDocument read the page as UTF-8.
@@ -40,7 +40,7 @@ function mcpt_import_newsletter_from_url( $url ) {
     $content = mcpt_extract_content( $doc, $url );
 
     if ( '' === trim( $content ) ) {
-        return new WP_Error( 'empty_content', __( 'The page has no content to import.', 'mcpt' ) );
+        return new WP_Error( 'empty_content', __( 'The page has no content to import.', 'mailchimp-cpt' ) );
     }
 
     // Create post
@@ -79,7 +79,7 @@ function mcpt_extract_title( DOMDocument $doc ) {
     }
 
     /* translators: %s: import date */
-    return sprintf( __( 'Newsletter imported on %s', 'mcpt' ), wp_date( get_option( 'date_format' ) ) );
+    return sprintf( __( 'Newsletter imported on %s', 'mailchimp-cpt' ), wp_date( get_option( 'date_format' ) ) );
 }
 
 /**
