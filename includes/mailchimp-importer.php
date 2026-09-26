@@ -167,7 +167,7 @@ function mcpt_sideload_first_image( DOMDocument $doc, $page_url, $post_id ) {
 
     $attachment_id = media_handle_sideload( $file, $post_id );
     if ( is_wp_error( $attachment_id ) ) {
-        @unlink( $tmp );
+        wp_delete_file( $tmp );
         return 0;
     }
 
