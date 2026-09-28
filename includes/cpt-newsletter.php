@@ -36,6 +36,18 @@ function mcpt_register_newsletter_cpt() {
         'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt' )
     );
 
+    /**
+     * Filters the arguments used to register the "newsletter" post type,
+     * for example to change the URL slug when a page already uses
+     * /newsletter/, turn off the archive or set 'show_in_rest'.
+     * Re-save Settings > Permalinks after changing the slug.
+     *
+     * @since 0.3.0
+     *
+     * @param array $args Arguments for register_post_type().
+     */
+    $args = apply_filters( 'mcpt_newsletter_post_type_args', $args );
+
     register_post_type( 'newsletter', $args );
 }
 add_action( 'init', 'mcpt_register_newsletter_cpt' );

@@ -4,7 +4,7 @@ Tags: mailchimp, newsletter, import, custom post type
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,7 +29,16 @@ It reads the public HTML page, so no Mailchimp API key is needed.
 2. Activate **Mailchimp CPT Importer**.
 3. Go to **Newsletters > Import Newsletter**.
 
+== Frequently Asked Questions ==
+
+= Can I change the /newsletter/ URL? =
+
+Yes. Use the `mcpt_newsletter_post_type_args` filter to change `$args['rewrite']['slug']` (or any other post type argument), then re-save **Settings > Permalinks**.
+
 == Changelog ==
+
+= 0.3.0 =
+* New `mcpt_newsletter_post_type_args` filter to customize the post type, such as its URL slug or archive. Defaults are unchanged.
 
 = 0.2.0 =
 * Success and error messages now appear on the import screen.

@@ -4,7 +4,7 @@ A WordPress plugin that imports a newsletter from a public web page, such as a M
 
 It reads the public HTML page, so you don't need a Mailchimp API key.
 
-![Version](https://img.shields.io/badge/version-0.2.0-blue)
+![Version](https://img.shields.io/badge/version-0.3.0-blue)
 ![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-21759b)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4)
 ![License](https://img.shields.io/badge/license-GPL--2.0--or--later-green)
@@ -40,6 +40,20 @@ Or clone it into `wp-content/plugins/`.
 3. Paste the URL and click **Import Newsletter**.
 4. Click **Review and publish it** in the success message, check the draft and publish it.
 
+## Customization
+
+The `mcpt_newsletter_post_type_args` filter receives the arguments passed to `register_post_type()`. Use it to change the URL slug (for example, if a page already uses `/newsletter/`), turn off the archive or enable the block editor:
+
+```php
+add_filter( 'mcpt_newsletter_post_type_args', function ( $args ) {
+    $args['rewrite']      = array( 'slug' => 'email-archive' );
+    $args['show_in_rest'] = true;
+    return $args;
+} );
+```
+
+After changing the slug, go to **Settings > Permalinks** and click **Save Changes** to refresh the rewrite rules.
+
 ## Limitations
 
 - The body keeps the email's layout tables and inline styles, so the post looks like the email. `wp_kses_post()` may drop some inline CSS properties.
@@ -49,6 +63,10 @@ Or clone it into `wp-content/plugins/`.
 - It imports one URL at a time.
 
 ## Changelog
+
+### 0.3.0
+
+- New `mcpt_newsletter_post_type_args` filter to customize the post type, such as its URL slug or archive. The defaults are unchanged.
 
 ### 0.2.0
 

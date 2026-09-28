@@ -3,7 +3,7 @@
  * Plugin Name:       Mailchimp CPT Importer
  * Plugin URI:        https://github.com/rolandototo/Mailchimp-CPT
  * Description:       Imports a newsletter from a public URL, such as a Mailchimp campaign page, into a Newsletter custom post type as a draft.
- * Version:           0.2.0
+ * Version:           0.3.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Rolando Escobar
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! defined( 'MCPT_PATH' ) ) {
     define( 'MCPT_PATH', plugin_dir_path( __FILE__ ) );
 }
-define( 'MCPT_VERSION', '0.2.0' );
+define( 'MCPT_VERSION', '0.3.0' );
 
 // Include files
 require_once MCPT_PATH . 'includes/cpt-newsletter.php';
